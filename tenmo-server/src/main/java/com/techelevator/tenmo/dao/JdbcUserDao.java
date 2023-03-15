@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class JdbcUserDao implements UserDao {
+public class JdbcUserDao extends UserDao {
 
+    private static final BigDecimal STARTING_BALANCE = new BigDecimal("1000.00");
     private JdbcTemplate jdbcTemplate;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
@@ -45,6 +46,11 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
+    public List<User> findAllExceptCurrentUser(String name) {
+        return null;
+    }
+
+    @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
         String sql = "SELECT user_id, username, password_hash FROM tenmo_user WHERE username ILIKE ?;";
         SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, username);
@@ -68,6 +74,13 @@ public class JdbcUserDao implements UserDao {
         }
 
         // TODO: Create the account record with initial balance
+
+        sql = "INSERT INTO account (user_id' balance) values(?, ?)";
+        try {
+            jdbcTemplate.update(sql, newUserId, STARTING_BALANCE);
+        } catch (DataAccessException e) {
+            return false;
+        }
 
         return true;
     }
