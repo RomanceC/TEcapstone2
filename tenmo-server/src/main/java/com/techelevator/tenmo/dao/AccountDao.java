@@ -7,9 +7,11 @@ import java.security.Principal;
 
 public interface AccountDao {
 
+
     Account viewBalance(int userId);
     Account addToBalance(BigDecimal amtToAdd, int id);
     Account subtractFromBalance(BigDecimal amtToSubtract, int id);
     Account findUserById(int userId);
     Account findAccountById(int id);
+
 }
