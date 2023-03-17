@@ -75,7 +75,7 @@ public class JdbcUserDao extends UserDao {
 
         // TODO: Create the account record with initial balance
 
-        sql = "INSERT INTO account (user_id' balance) values(?, ?)";
+        sql = "INSERT INTO account (user_id, balance) values(?, ?)";
         try {
             jdbcTemplate.update(sql, newUserId, STARTING_BALANCE);
         } catch (DataAccessException e) {

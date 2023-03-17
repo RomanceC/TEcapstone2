@@ -59,4 +59,7 @@ public class Transfer {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    public void setAccountFromId(int account_from) {
+    }
 }

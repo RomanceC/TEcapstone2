@@ -20,7 +20,7 @@ public class JdbcAccountDao implements AccountDao{
 
     @Override
     public Account viewBalance(int id) {
-        String sql = "SELECT account_id, user_id, balance FROM accounts WHERE user_id = ?;";
+        String sql = "SELECT account_id, user_id, balance FROM account WHERE user_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
         Account account = new Account();
         while(results.next()){
@@ -82,6 +82,8 @@ public class JdbcAccountDao implements AccountDao{
         account.setBalance(rs.getBigDecimal("balance"));
         return account;
     }
+
+
 
 
 }

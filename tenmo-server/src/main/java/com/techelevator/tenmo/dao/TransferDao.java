@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TransferDao {
 
-    public String sendMoney(int accountFrom, int accountTo, BigDecimal amount); // send/transfer money
+    public int sendMoney(Transfer transfer); // send/transfer money
     public Transfer getTransferById (int transferId); //view money
     public List<Transfer> getAllTransfer(int userId); //view the money transfer history
 
